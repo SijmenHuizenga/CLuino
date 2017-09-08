@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>it.sijmen.cluino</id>
-  <name>cluino</name>
-  <version>1.0</version>
+  <name>CLuino</name>
+  <version>0.1</version>
   <vendor url="https://github.com/sijmenhuizenga/cluino">Sijmen</vendor>
 
   <description><![CDATA[
@@ -9,13 +9,13 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      1.0: Initial Release
+      0.1: Initial beta prototype release
     ]]>
   </change-notes>
 
   <idea-version since-build="145.0"/>
 
-  <!--<depends>com.intellij.modules.clion</depends>-->
+  <depends>com.intellij.modules.clion</depends>
 
   <extensions defaultExtensionNs="com.intellij">
       <configurationType implementation="it.sijmen.cluino.runconfigurations.ArduinoRunConfigurationType"/>

@@ -50,7 +50,11 @@ Do some dificult stuff in your `CMakeList.txt` to include all header files in th
 //todo
 
 ### Upload
-//todo
+
+#### avrude config file
+The uploading is provied by avrdude. This configuration file is passed to avrdude and contains settings for avr devices. The arduino ide generates this file when uploading a sketch for the first time. The file can than be found in the folllowing directory: `~/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino9/etc/avrdude.conf`. the numbers in this example might be different on your machine because of version differences. This should not be a problem.
+
+You can also [mannualy download the avrdude.conf from the Arduino Repository](https://github.com/arduino/Arduino/blob/master/hardware/arduino/avr/bootloaders/gemma/avrdude.conf). Just put it somewhere on your system and reference to it. This should work.
 
 ## Different boards
 //todo

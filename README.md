@@ -54,3 +54,12 @@ Do some dificult stuff in your `CMakeList.txt` to include all header files in th
 
 ## Different boards
 //todo
+
+## FAQ
+
+### compile error: `arduino: Unknown package`
+The compiler can not find the package named `arduino` that contains the board specific build configurations. The first part of the board code (arduino:avr:uno) references a hardware package. The hardware packages are specified in the `Hardware` section. So this error means that the `arduino` package cannot be found in the specified `Hardware` folders.
+
+To fix this you can ether specify a different board package code (for example `archlinux-arduino:avr:uno` on Arch Linux) that actually exists or install the package that is needed. 
+
+Installing a new package can easely be done through the Arduino IDE. Go into Tools -> Boards -> Board Manager and install the board package that you want to use. The package is installed in the following directory: `~/.arduino15/packages/`. Make sure you add this directory in the `Hardwares` section so it is picked up by the compiler.

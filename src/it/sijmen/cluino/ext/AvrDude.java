@@ -50,7 +50,7 @@ public class AvrDude {
      * Memory operation specification.
      * <memtype>:r|w|v:<filename>[:format]
      */
-    private String memFormat = "Uflash:w:%s:i";
+    private String memFormat = "-Uflash:w:%s:i";
 
     public AvrDude(String configFile, boolean verbose, String avrDevice, String programmerType, String port,
                    String baudRate, boolean disableAutoErase) {

@@ -49,7 +49,7 @@ public class CompileRunConfiguration extends RunConfigurationBase {
         hardwares = ArduinoBuilder.getDefaultHardwares();
         tools = ArduinoBuilder.getDefaultTools();
 
-        prefs = new ArrayList<>();
+        prefs = ArduinoBuilder.getDefaultPrefs();
         libraries = new ArrayList<>();
     }
 

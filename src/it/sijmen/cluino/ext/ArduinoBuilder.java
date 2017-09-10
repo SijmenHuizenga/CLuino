@@ -119,7 +119,7 @@ public class ArduinoBuilder {
         out.add("-debug-level="+debugLevel);
 
         out.add("-build-path=" + getOrFail(outPath, OUT_BUILD).getPath());
-        out.add("-build-cache=" + getOrFail(outPath, OUT_BUILD).getPath());
+        out.add("-build-cache=" + getOrFail(outPath, OUT_CACHE).getPath());
 
         prefs.forEach(p -> out.add("-prefs=" + p));
 
@@ -138,15 +138,29 @@ public class ArduinoBuilder {
         getOrCreateDir(requestor, out, OUT_CACHE);
     }
 
-    public enum Logger { HUMAN, HUMANTAGS, MACHINE }
+    public enum Logger { HUMAN, HUMANTAGS, MACHINE;}
 
-    public enum Warnings { NONE, DEFAUlT, MORE, ALL }
+    public enum Warnings { NONE, DEFAUlT, MORE, ALL;}
+
+    public static List<String> getDefaultPrefs() {
+        List<String> out = new ArrayList<>();
+
+        out.add("build.warn_data_percentage=75");
+        Path userdir = getUserHomeArduinoPackages().resolve("arduino/tools");
+        if(Files.exists(userdir)) {
+            String p = userdir.toAbsolutePath().toString();
+            out.add("runtime.tools.arduinoOTA.path=" + p + "/arduinoOTA/1.1.1");
+            out.add("runtime.tools.avrdude.path=" + p + "/avrdude/6.3.0-arduino9");
+            out.add("runtime.tools.avr-gcc.path=" + p + "/avr-gcc/4.9.2-atmel3.5.4-arduino2");
+        }
+        return out;
+    }
 
     public static List<String> getDefaultHardwares(){
         List<String> out = new ArrayList<>();
         if(!isWindows())
             out.add("/usr/share/arduino/hardware");
-        Path userdir = Paths.get(System.getProperty("user.home")).resolve(".arduino15/packages");
+        Path userdir = getUserHomeArduinoPackages();
         if(Files.exists(userdir))
             out.add(userdir.toAbsolutePath().toString());
         return out;
@@ -156,10 +170,14 @@ public class ArduinoBuilder {
         List<String> out = new ArrayList<>();
         if(!isWindows())
             out.add("/usr/share/arduino/tools-builder");
-        Path userdir = Paths.get(System.getProperty("user.home")).resolve(".arduino15/packages");
+        Path userdir = getUserHomeArduinoPackages();
         if(Files.exists(userdir))
             out.add(userdir.toAbsolutePath().toString());
         return out;
+    }
+
+    private static Path getUserHomeArduinoPackages(){
+        return Paths.get(System.getProperty("user.home")).resolve(".arduino15/packages");
     }
 
     public ArduinoBuilder setLogger(Logger logger) {

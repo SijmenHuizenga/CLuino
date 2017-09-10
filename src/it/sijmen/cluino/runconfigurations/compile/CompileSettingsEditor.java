@@ -15,6 +15,7 @@ import com.intellij.ui.table.JBTable;
 import com.intellij.util.ui.FormBuilder;
 import it.sijmen.cluino.ext.ArduinoBuilder;
 import it.sijmen.cluino.ui.FileListPanel;
+import it.sijmen.cluino.ui.StringListPanel;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -32,7 +33,7 @@ public class CompileSettingsEditor extends SettingsEditor<CompileRunConfiguratio
     private final JBCheckBox verbose;
     private final FileListPanel hardwares;
     private final FileListPanel tools;
-    private final FileListPanel prefs;
+    private final StringListPanel prefs;
     private final FileListPanel libraries;
 
     public CompileSettingsEditor(Project project) {
@@ -51,7 +52,7 @@ public class CompileSettingsEditor extends SettingsEditor<CompileRunConfiguratio
 
         hardwares = new FileListPanel("Hardwares", "No hardware folders selected.", project);
         tools = new FileListPanel("Tools", "No hardware folders selected.", project);
-        prefs = new FileListPanel("Preferences", "No preferences overwrites folders selected.", project);
+        prefs = new StringListPanel("Preferences", "No preferences overwrites folders selected.", project);
         libraries = new FileListPanel("Libraries", "No extra library folders selected.", project);
     }
 

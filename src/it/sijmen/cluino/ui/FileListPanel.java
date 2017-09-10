@@ -26,7 +26,7 @@ public class FileListPanel {
     private final String columnTitle;
     private final String emptyText;
 
-    private Project project;
+    protected Project project;
     private ListTableModel<String> model;
     private TableView<String> table;
 
@@ -96,7 +96,7 @@ public class FileListPanel {
         });
     };
 
-    private void showEditorDialog(@Nullable String originalFile, Consumer<String> finished) {
+    protected void showEditorDialog(@Nullable String originalFile, Consumer<String> finished) {
         FileChooser.chooseFile(
                 new FileChooserDescriptor(false, true, false, false, false, false),
                 this.project, Util.getFileOrNull(originalFile),

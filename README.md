@@ -50,7 +50,20 @@ Do some dificult stuff in your `CMakeList.txt` to include all header files in th
 //todo
 
 ### Upload
-//todo
+
+#### avrude config file
+The uploading is provied by avrdude. This configuration file is passed to avrdude and contains settings for avr devices. The arduino ide generates this file when uploading a sketch for the first time. The file can than be found in the folllowing directory: `~/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino9/etc/avrdude.conf`. the numbers in this example might be different on your machine because of version differences. This should not be a problem.
+
+You can also [mannualy download the avrdude.conf from the Arduino Repository](https://github.com/arduino/Arduino/blob/master/hardware/arduino/avr/bootloaders/gemma/avrdude.conf). Just put it somewhere on your system and reference to it. This should work.
 
 ## Different boards
 //todo
+
+## FAQ
+
+### compile error: `arduino: Unknown package`
+The compiler can not find the package named `arduino` that contains the board specific build configurations. The first part of the board code (arduino:avr:uno) references a hardware package. The hardware packages are specified in the `Hardware` section. So this error means that the `arduino` package cannot be found in the specified `Hardware` folders.
+
+To fix this you can ether specify a different board package code (for example `archlinux-arduino:avr:uno` on Arch Linux) that actually exists or install the package that is needed. 
+
+Installing a new package can easely be done through the Arduino IDE. Go into Tools -> Boards -> Board Manager and install the board package that you want to use. The package is installed in the following directory: `~/.arduino15/packages/`. Make sure you add this directory in the `Hardwares` section so it is picked up by the compiler.
